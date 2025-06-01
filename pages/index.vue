@@ -1,9 +1,19 @@
-<script setup lang="ts">
-
-</script>
+<script setup lang="ts"></script>
 
 <template>
-  <h1 class="text-3xl font-bold underline">
-    Hello world!
-  </h1>
+  <div class="w-md mx-auto py-12 md:p-20">
+    <h1 class="text-3xl font-bold underline mb-3">
+      Visit Trails
+    </h1>
+    <p>Keep track of your travels and adventures. Add</p>
+    <ul class="*:list-disc ml-8">
+      <li>locations</li>
+      <li>photos</li>
+      <li>notes</li>
+      <li>...and much more</li>
+    </ul>
+    <div class="text-center my-4">
+      <AppAuthButton />
+    </div>
+  </div>
 </template>

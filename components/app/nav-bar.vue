@@ -9,9 +9,7 @@
     </h1>
     <div class="flex items-center gap-8">
       <AppThemeSwitcher />
-      <UButton trailing-icon="tabler:brand-github">
-        Sign In
-      </UButton>
+      <AppAuthButton />
     </div>
   </nav>
 </template>
