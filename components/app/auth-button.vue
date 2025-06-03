@@ -1,5 +1,6 @@
 <template>
-  <UButton trailing-icon="tabler:brand-github" class="cursor-pointer">
+  <UiButton class="cursor-pointer" size="lg">
     Sign In
-  </UButton>
+    <Icon name="tabler:brand-github" />
+  </UiButton>
 </template>
