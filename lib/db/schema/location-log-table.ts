@@ -1,5 +1,6 @@
 import { int, real, sqliteTable, text } from "drizzle-orm/sqlite-core";
 
+import { userTable } from "./auth-schema";
 import { locationTable } from "./location-table";
 
 export const locationLogTable = sqliteTable("location_log", {
@@ -10,6 +11,7 @@ export const locationLogTable = sqliteTable("location_log", {
   lat: real().notNull(),
   long: real().notNull(),
   locationId: int().notNull().references(() => locationTable.id, { onDelete: "cascade" }),
+  userId: int().notNull().references(() => userTable.id, { onDelete: "cascade" }),
 
   startedAt: int().notNull(),
   endedAt: int().notNull(),

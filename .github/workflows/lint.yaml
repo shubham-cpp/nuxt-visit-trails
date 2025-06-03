@@ -13,11 +13,12 @@ jobs:
       NODE_ENV: development
       TURSO_URL: ${{ secrets.TURSO_URL }}
       TURSO_AUTH_TOKEN: ${{ secrets.TURSO_AUTH_TOKEN }}
-      AUTH_TOKEN: ${{ secrets.AUTH_TOKEN }}
-    # BETTER_AUTH_SECRET: ${{ secrets.BETTER_AUTH_SECRET }}
-    # BETTER_AUTH_URL: ${{ secrets.BETTER_AUTH_URL }}
-    # AUTH_GITHUB_CLIENT_ID: ${{ secrets.AUTH_GITHUB_CLIENT_ID }}
-    # AUTH_GITHUB_CLIENT_SECRET: ${{ secrets.AUTH_GITHUB_CLIENT_SECRET }}
+      BETTER_AUTH_SECRET: ${{ secrets.BETTER_AUTH_SECRET }}
+      BETTER_AUTH_URL: ${{ secrets.BETTER_AUTH_URL }}
+      AUTH_GITHUB_CLIENT_ID: ${{ secrets.AUTH_GITHUB_CLIENT_ID }}
+      AUTH_GITHUB_CLIENT_SECRET: ${{ secrets.AUTH_GITHUB_CLIENT_SECRET }}
+      AUTH_GOOGLE_ID: ${{ secrets.AUTH_GOOGLE_ID }}
+      AUTH_GOOGLE_SECRET: ${{ secrets.AUTH_GOOGLE_SECRET }}
     # S3_ENDPOINT: ${{ secrets.S3_ENDPOINT }}
     # S3_ACCESS_KEY: ${{ secrets.S3_ACCESS_KEY }}
     # S3_ACCESS_SECRET: ${{ secrets.S3_ACCESS_SECRET }}

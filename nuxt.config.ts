@@ -14,6 +14,7 @@ export default defineNuxtConfig({
     "@nuxt/image",
     "@nuxt/ui",
     "@nuxtjs/color-mode",
+    "@pinia/nuxt",
   ],
   css: ["~/assets/css/main.css"],
   vite: {
