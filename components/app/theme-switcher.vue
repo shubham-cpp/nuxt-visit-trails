@@ -1,36 +1,26 @@
 <script setup lang="ts">
-import type { SelectItem } from "@nuxt/ui";
-
 const colorMode = useColorMode();
-
-const isDarkMode = computed({
-  get() {
-    return colorMode.value === "dark";
-  },
-  set(value) {
-    colorMode.preference = value ? "dark" : "light";
-  },
-});
-const items = ref([
-  {
-    value: true,
-    icon: "tabler:moon-filled",
-  },
-  {
-    value: false,
-    icon: "tabler:sun-high-filled",
-  },
-] satisfies SelectItem[]);
-
-const icon = computed(() => items.value.find(item => item.value === isDarkMode.value)?.icon);
 </script>
 
 <template>
-  <USelect
-    v-model="isDarkMode"
-    :items="items"
-    :icon="icon"
-    value-key="value"
-    class="w-8"
-  />
+  <UiDropdownMenu>
+    <UiDropdownMenuTrigger as-child>
+      <UiButton variant="outline">
+        <Icon name="tabler:moon" class="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+        <Icon name="tabler:sun" class="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+        <span class="sr-only">Toggle theme</span>
+      </UiButton>
+    </UiDropdownMenuTrigger>
+    <UiDropdownMenuContent align="end">
+      <UiDropdownMenuItem @click="colorMode.preference = 'light'">
+        Light
+      </UiDropdownMenuItem>
+      <UiDropdownMenuItem @click="colorMode.preference = 'dark'">
+        Dark
+      </UiDropdownMenuItem>
+      <UiDropdownMenuItem @click="colorMode.preference = 'system'">
+        System
+      </UiDropdownMenuItem>
+    </UiDropdownMenuContent>
+  </UiDropdownMenu>
 </template>

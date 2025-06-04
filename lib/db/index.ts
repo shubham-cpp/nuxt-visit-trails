@@ -8,5 +8,6 @@ export const db = drizzle({
     url: env.TURSO_URL,
     authToken: env.NODE_ENV === "development" ? undefined : env.TURSO_AUTH_TOKEN,
   },
+  casing: "snake_case",
   schema,
 });

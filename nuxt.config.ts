@@ -12,14 +12,21 @@ export default defineNuxtConfig({
     "@nuxt/fonts",
     "@nuxt/icon",
     "@nuxt/image",
-    "@nuxt/ui",
+    // "@nuxt/ui",
+    "@nuxtjs/tailwindcss",
     "@nuxtjs/color-mode",
+    "@pinia/nuxt",
+    "shadcn-nuxt",
   ],
   css: ["~/assets/css/main.css"],
   vite: {
     plugins: [
       tailwindcss(),
     ],
+  },
+
+  colorMode: {
+    classSuffix: "",
   },
   eslint: {
     config: {

@@ -1,16 +1,18 @@
 import { int, sqliteTable, text } from "drizzle-orm/sqlite-core";
 
-import { locationLogTable } from "./location-log-table";
+import { user } from "./auth-schema";
+import { locationLog } from "./location-log-table";
 
-export const locationLogImageTable = sqliteTable("location_log_image", {
+export const locationLogImage = sqliteTable("location_log_image", {
   id: int().primaryKey({ autoIncrement: true }),
   key: text().notNull().unique(),
 
-  locationLogId: int().notNull().references(() => locationLogTable.id, { onDelete: "cascade" }),
+  locationLogId: int().notNull().references(() => locationLog.id, { onDelete: "cascade" }),
+  userId: int().notNull().references(() => user.id, { onDelete: "cascade" }),
 
   createdAt: int().$default(() => Date.now()),
   updatedAt: int().$default(() => Date.now()).$onUpdate(() => Date.now()),
 });
 
-export type LocationLogImageInsert = typeof locationLogImageTable.$inferInsert;
-export type LocationLogImage = typeof locationLogImageTable.$inferSelect;
+export type LocationLogImageInsert = typeof locationLogImage.$inferInsert;
+export type LocationLogImage = typeof locationLogImage.$inferSelect;
