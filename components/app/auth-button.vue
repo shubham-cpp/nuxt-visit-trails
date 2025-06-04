@@ -23,12 +23,8 @@ const authStore = useAuthStore();
       size="22"
     />
   </UiButton>
-  <UiDropdownMenu
-    v-else
-  >
-    <UiDropdownMenuTrigger
-      class="cursor-pointer"
-    >
+  <UiDropdownMenu v-else>
+    <UiDropdownMenuTrigger class="cursor-pointer">
       <UiAvatar>
         <UiAvatarImage :src="authStore.user?.image ?? ''" :alt="authStore.user.name" />
         <UiAvatarFallback>CN</UiAvatarFallback>
