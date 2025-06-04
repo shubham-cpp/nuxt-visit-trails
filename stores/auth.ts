@@ -1,12 +1,10 @@
-import { createAuthClient } from "better-auth/vue";
-
-const authClient = createAuthClient();
+import { authClient } from "~/lib/auth-client";
 
 export const useAuthStore = defineStore("useAuthStore", () => {
   const session = ref<Awaited<ReturnType<typeof authClient.useSession>> | null>(null);
 
-  const user = computed(() => session?.value?.data?.user);
-  const loading = computed(() => session?.value?.isPending);
+  const user = computed(() => session.value?.data?.user);
+  const loading = computed(() => session.value?.isPending);
 
   async function init() {
     const data = await authClient.useSession(useFetch);

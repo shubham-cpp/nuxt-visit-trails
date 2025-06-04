@@ -1,8 +1,8 @@
 import { int, real, sqliteTable, text, unique } from "drizzle-orm/sqlite-core";
 
-import { userTable } from "./auth-schema";
+import { user } from "./auth-schema";
 
-export const locationTable = sqliteTable("location", {
+export const location = sqliteTable("location", {
   id: int().primaryKey({ autoIncrement: true }),
   name: text().notNull(),
   description: text(),
@@ -11,7 +11,7 @@ export const locationTable = sqliteTable("location", {
   lat: real().notNull(),
   long: real().notNull(),
 
-  userId: int().notNull().references(() => userTable.id, { onDelete: "cascade" }),
+  userId: int().notNull().references(() => user.id, { onDelete: "cascade" }),
 
   createdAt: int().$default(() => Date.now()),
   updatedAt: int().$default(() => Date.now()).$onUpdate(() => Date.now()),
@@ -19,5 +19,5 @@ export const locationTable = sqliteTable("location", {
   unique().on(t.name, t.userId),
 ]);
 
-export type LocationInsert = typeof locationTable.$inferInsert;
-export type Location = typeof locationTable.$inferSelect;
+export type LocationInsert = typeof location.$inferInsert;
+export type Location = typeof location.$inferSelect;

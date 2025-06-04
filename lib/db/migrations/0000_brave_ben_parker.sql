@@ -48,7 +48,46 @@ CREATE TABLE `verification` (
 	`updated_at` integer
 );
 --> statement-breakpoint
-ALTER TABLE `location_log_image` ADD `user_id` integer NOT NULL REFERENCES user(id);--> statement-breakpoint
-ALTER TABLE `location_log` ADD `user_id` integer NOT NULL REFERENCES user(id);--> statement-breakpoint
-ALTER TABLE `location` ADD `user_id` integer NOT NULL REFERENCES user(id);--> statement-breakpoint
+CREATE TABLE `location_log_image` (
+	`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL,
+	`key` text NOT NULL,
+	`location_log_id` integer NOT NULL,
+	`user_id` integer NOT NULL,
+	`created_at` integer,
+	`updated_at` integer,
+	FOREIGN KEY (`location_log_id`) REFERENCES `location_log`(`id`) ON UPDATE no action ON DELETE cascade,
+	FOREIGN KEY (`user_id`) REFERENCES `user`(`id`) ON UPDATE no action ON DELETE cascade
+);
+--> statement-breakpoint
+CREATE UNIQUE INDEX `location_log_image_key_unique` ON `location_log_image` (`key`);--> statement-breakpoint
+CREATE TABLE `location_log` (
+	`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL,
+	`name` text NOT NULL,
+	`description` text,
+	`lat` real NOT NULL,
+	`long` real NOT NULL,
+	`location_id` integer NOT NULL,
+	`user_id` integer NOT NULL,
+	`started_at` integer NOT NULL,
+	`ended_at` integer NOT NULL,
+	`created_at` integer,
+	`updated_at` integer,
+	FOREIGN KEY (`location_id`) REFERENCES `location`(`id`) ON UPDATE no action ON DELETE cascade,
+	FOREIGN KEY (`user_id`) REFERENCES `user`(`id`) ON UPDATE no action ON DELETE cascade
+);
+--> statement-breakpoint
+CREATE TABLE `location` (
+	`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL,
+	`name` text NOT NULL,
+	`description` text,
+	`slug` text NOT NULL,
+	`lat` real NOT NULL,
+	`long` real NOT NULL,
+	`user_id` integer NOT NULL,
+	`created_at` integer,
+	`updated_at` integer,
+	FOREIGN KEY (`user_id`) REFERENCES `user`(`id`) ON UPDATE no action ON DELETE cascade
+);
+--> statement-breakpoint
+CREATE UNIQUE INDEX `location_slug_unique` ON `location` (`slug`);--> statement-breakpoint
 CREATE UNIQUE INDEX `location_name_userId_unique` ON `location` (`name`,`user_id`);
