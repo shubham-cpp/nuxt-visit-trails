@@ -1,5 +1,17 @@
 <script setup lang="ts">
 const authStore = useAuthStore();
+
+const fallbackName = computed(() => {
+  const split = authStore.user?.name?.split(" ");
+
+  if (!split || split.length === 0)
+    return undefined;
+
+  if (split.length === 1)
+    return (split[0][0] + split[0].at(-1)).toLocaleUpperCase();
+
+  return split.map(s => s[0]).join("").toLocaleUpperCase();
+});
 </script>
 
 <template>
@@ -27,7 +39,7 @@ const authStore = useAuthStore();
     <UiDropdownMenuTrigger class="cursor-pointer">
       <UiAvatar>
         <UiAvatarImage :src="authStore.user?.image ?? ''" :alt="authStore.user.name" />
-        <UiAvatarFallback>CN</UiAvatarFallback>
+        <UiAvatarFallback>{{ fallbackName }}</UiAvatarFallback>
       </UiAvatar>
     </UiDropdownMenuTrigger>
     <UiDropdownMenuContent>

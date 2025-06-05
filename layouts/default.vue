@@ -1,3 +1,9 @@
+<script setup lang="ts">
+const authClient = useAuthStore(); // vue-sonner v2 requires this import
+
+await authClient.init();
+</script>
+
 <template>
   <div class="flex flex-col min-h-screen">
     <AppNavBar />
