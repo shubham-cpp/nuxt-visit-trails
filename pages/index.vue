@@ -1,4 +1,6 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const authStore = useAuthStore();
+</script>
 
 <template>
   <div class="w-md mx-auto py-12 md:p-20">
@@ -13,7 +15,16 @@
       <li>...and much more</li>
     </ul>
     <div class="text-center my-4">
-      <AppAuthButton />
+      <AppAuthButton v-if="!authStore.user" />
+      <UiButton
+        v-else
+        as-child
+        variant="link"
+      >
+        <NuxtLink to="/dashboard">
+          Start Logging
+        </NuxtLink>
+      </UiButton>
     </div>
   </div>
 </template>
